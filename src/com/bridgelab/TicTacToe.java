@@ -3,12 +3,12 @@ package com.bridgelab;
 import java.util.Scanner;
 
 public class TicTacToe {
-
 	static char[] board = new char[10];
 	static Scanner scr = new Scanner(System.in);
 	static char playerLetter;
 	static char computerLetter;
 	static int position;
+
 
 	static void createBoard(char[] board) {
 
@@ -36,14 +36,14 @@ public class TicTacToe {
 		System.out.println("Enter Location 1-9 to Make Move");
 		playLocation = scr.nextInt();
 		if (playLocation < 10 && playLocation > 0) {
-			board[playLocation] = playerLetter;
+			board[playLocation] = playerLetter;			
 		} else {
 			System.out.println("Invalid Choice");
 		}
 	}
-
+	
 	static void playerMove() {
-		System.out.println("Enter the position(1-9)");
+		System.out.println("Enter the new position for move(1-9)");
 		position = scr.nextInt();
 		while (board[position] != ' ') {
 			System.out.println("Invalid option!! Please Try Again");
@@ -53,16 +53,27 @@ public class TicTacToe {
         System.out.println("Player move to position "+position);
 	}
 	
-	
-
-	public static void main(String[] args) {
-		System.out.println("----- Welcome To The Game Of Tic Tac Toe -----");
-		createBoard(board);
-        getLetter();       
+	static CurrentPlayer toss(){
+        if((int)(Math.random()*10)%2==1){
+            System.out.println("\nPlayer Won The Toss! Player Starts");
+            return CurrentPlayer.PLAYER;
+        }
+        else{
+            System.out.println("\nComputer Won The Toss! Computer Starts");
+            return CurrentPlayer.COMPUTER;
+        }
+    }
+    public static void main(String[] args) {
+    	System.out.println("----- Welcome To The Game Of Tic Tac Toe -----");
+        createBoard(board);
+        getLetter();
+        makeMove();
+        showBoard(board);
         playerMove();
         showBoard(board);
-		
+        toss();
+        
 
-	}
+    }
 
 }
