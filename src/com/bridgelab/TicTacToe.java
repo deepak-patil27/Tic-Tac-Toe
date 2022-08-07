@@ -255,17 +255,21 @@ public class TicTacToe {
 
 	public static void main(String[] args) {
 		System.out.println("----- Welcome To The Game Of Tic Tac Toe -----");
-		CurrentPlayer currentPlayer = toss();
 		createBoard(board);
-		getLetter();
-		
-		
-
-		boolean isBlockAble;
+        getLetter();
+        showBoard(board);
+        playerMove();
+        showBoard(board);
+        computerMove();
+        showBoard(board);       
+        toss();
+        
+        boolean isBlockAble;
 		boolean isGameOver;
 		boolean isWinAble;
 
 		while (true) {
+			CurrentPlayer currentPlayer = null;
 			if (currentPlayer == CurrentPlayer.PLAYER) {
 				playerMove();
 				isGameOver = isGameOver(board, playerLetter);
@@ -290,6 +294,10 @@ public class TicTacToe {
 			computerMove();
 			currentPlayer = (currentPlayer == CurrentPlayer.COMPUTER) ? CurrentPlayer.PLAYER : CurrentPlayer.COMPUTER;
 		}
+        
+        
+
+		
 
 	}
 
