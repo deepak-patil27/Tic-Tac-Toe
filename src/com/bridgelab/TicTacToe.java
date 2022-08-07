@@ -252,37 +252,36 @@ public class TicTacToe {
 		}
 		return false;
 	}
-	
-	static boolean takeCornerOrCenter(char[] board,char letter){
-        if(board[1]==' '){
-            board[1]=letter;
-            return true;
-        }
-        else if(board[3]==' '){
-            board[3]=letter;
-            return true;
-        } else if (board[7]==' ') {
-            board[7]=letter;
-            return true;
-        } else if (board[9]==' ') {
-            board[9]=letter;
-            return true;
-        }
-        return false;
-    }
+
+	static boolean takeCornerOrCenter(char[] board, char letter) {
+		if (board[1] == ' ') {
+			board[1] = letter;
+			return true;
+		} else if (board[3] == ' ') {
+			board[3] = letter;
+			return true;
+		} else if (board[7] == ' ') {
+			board[7] = letter;
+			return true;
+		} else if (board[9] == ' ') {
+			board[9] = letter;
+			return true;
+		}
+		return false;
+	}
 
 	public static void main(String[] args) {
 		System.out.println("----- Welcome To The Game Of Tic Tac Toe -----");
 		createBoard(board);
-        getLetter();
-        showBoard(board);
-        playerMove();
-        showBoard(board);
-        computerMove();
-        showBoard(board);       
-        toss();
-        
-        boolean isBlockAble;
+		getLetter();
+		showBoard(board);
+		playerMove();
+		showBoard(board);
+		computerMove();
+		showBoard(board);
+		toss();
+
+		boolean isBlockAble;
 		boolean isGameOver;
 		boolean isWinAble;
 
@@ -292,18 +291,18 @@ public class TicTacToe {
 				playerMove();
 				isGameOver = isGameOver(board, playerLetter);
 			} else {
-                isWinAble=isWinAble(board);
-                if(isWinAble){
-                    showBoard(board);
-                    break;
-                }
-                isBlockAble=isBlockAble(board);
-                if(!isBlockAble){
-                    boolean takeCornerOrCenter = takeCornerOrCenter(board,computerLetter);
-                    if(!takeCornerOrCenter){
-                        computerMove();
-                    }
-                }
+				isWinAble = isWinAble(board);
+				if (isWinAble) {
+					showBoard(board);
+					break;
+				}
+				isBlockAble = isBlockAble(board);
+				if (!isBlockAble) {
+					boolean takeCornerOrCenter = takeCornerOrCenter(board, computerLetter);
+					if (!takeCornerOrCenter) {
+						computerMove();
+					}
+				}
 
 				isGameOver = isGameOver(board, computerLetter);
 			}
@@ -314,10 +313,6 @@ public class TicTacToe {
 			computerMove();
 			currentPlayer = (currentPlayer == CurrentPlayer.COMPUTER) ? CurrentPlayer.PLAYER : CurrentPlayer.COMPUTER;
 		}
-        
-        
-
-		
 
 	}
 
