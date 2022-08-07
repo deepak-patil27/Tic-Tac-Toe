@@ -270,49 +270,63 @@ public class TicTacToe {
 		return false;
 	}
 
+	static boolean playAgain() {
+		System.out.println("If you want to play again press Y");
+		char choice = scr.next().toUpperCase().charAt(0);
+		if (choice == 'Y') {
+			return true;
+		} else {
+			System.out.println("Thank You for playing!!!");
+			return false;
+		}
+	}
+
 	public static void main(String[] args) {
-		System.out.println("----- Welcome To The Game Of Tic Tac Toe -----");
-		createBoard(board);
-		getLetter();
-		showBoard(board);
-		playerMove();
-		showBoard(board);
-		computerMove();
-		showBoard(board);
-		toss();
+		do {
+			System.out.println("----- Welcome To The Game Of Tic Tac Toe -----");
+			createBoard(board);
+			getLetter();
+			showBoard(board);
+			playerMove();
+			showBoard(board);
+			computerMove();
+			showBoard(board);
+			toss();
 
-		boolean isBlockAble;
-		boolean isGameOver;
-		boolean isWinAble;
+			boolean isBlockAble;
+			boolean isGameOver;
+			boolean isWinAble;
 
-		while (true) {
-			CurrentPlayer currentPlayer = null;
-			if (currentPlayer == CurrentPlayer.PLAYER) {
-				playerMove();
-				isGameOver = isGameOver(board, playerLetter);
-			} else {
-				isWinAble = isWinAble(board);
-				if (isWinAble) {
-					showBoard(board);
+			while (true) {
+				CurrentPlayer currentPlayer = null;
+				if (currentPlayer == CurrentPlayer.PLAYER) {
+					playerMove();
+					isGameOver = isGameOver(board, playerLetter);
+				} else {
+					isWinAble = isWinAble(board);
+					if (isWinAble) {
+						showBoard(board);
+						break;
+					}
+					isBlockAble = isBlockAble(board);
+					if (!isBlockAble) {
+						boolean takeCornerOrCenter = takeCornerOrCenter(board, computerLetter);
+						if (!takeCornerOrCenter) {
+							computerMove();
+						}
+					}
+
+					isGameOver = isGameOver(board, computerLetter);
+				}
+				showBoard(board);
+				if (isGameOver) {
 					break;
 				}
-				isBlockAble = isBlockAble(board);
-				if (!isBlockAble) {
-					boolean takeCornerOrCenter = takeCornerOrCenter(board, computerLetter);
-					if (!takeCornerOrCenter) {
-						computerMove();
-					}
-				}
-
-				isGameOver = isGameOver(board, computerLetter);
+				computerMove();
+				currentPlayer = (currentPlayer == CurrentPlayer.COMPUTER) ? CurrentPlayer.PLAYER
+						: CurrentPlayer.COMPUTER;
 			}
-			showBoard(board);
-			if (isGameOver) {
-				break;
-			}
-			computerMove();
-			currentPlayer = (currentPlayer == CurrentPlayer.COMPUTER) ? CurrentPlayer.PLAYER : CurrentPlayer.COMPUTER;
-		}
+		} while (playAgain());
 
 	}
 
