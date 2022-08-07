@@ -8,7 +8,7 @@ public class TicTacToe {
 	static Scanner scr = new Scanner(System.in);
 	static char playerLetter;
 	static char computerLetter;
-
+	static int position;
 
 	static void createBoard(char[] board) {
 
@@ -36,18 +36,33 @@ public class TicTacToe {
 		System.out.println("Enter Location 1-9 to Make Move");
 		playLocation = scr.nextInt();
 		if (playLocation < 10 && playLocation > 0) {
-			board[playLocation] = playerLetter;			
+			board[playLocation] = playerLetter;
 		} else {
 			System.out.println("Invalid Choice");
 		}
 	}
-    public static void main(String[] args) {
-    	System.out.println("----- Welcome To The Game Of Tic Tac Toe -----");
-        createBoard(board);
-        getLetter();
-        makeMove();
-        showBoard(board);
 
-    }
+	static void playerMove() {
+		System.out.println("Enter the position(1-9)");
+		position = scr.nextInt();
+		while (board[position] != ' ') {
+			System.out.println("Invalid option!! Please Try Again");
+			position = scr.nextInt();
+		}
+		makeMove();
+        System.out.println("Player move to position "+position);
+	}
+	
+	
+
+	public static void main(String[] args) {
+		System.out.println("----- Welcome To The Game Of Tic Tac Toe -----");
+		createBoard(board);
+        getLetter();       
+        playerMove();
+        showBoard(board);
+		
+
+	}
 
 }
