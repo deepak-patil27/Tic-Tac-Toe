@@ -96,6 +96,137 @@ public class TicTacToe {
 		}
 	}
 
+	static boolean isWinAble(char[] board) {
+
+		for (int i = 1; i < 10; i += 3) {
+			if (board[i] == computerLetter && board[i + 1] == computerLetter && board[i + 2] == ' ') {
+				board[i + 2] = computerLetter;
+				System.out.println("Computer own");
+				return true;
+			} else if (board[i] == computerLetter && board[i + 1] == ' ' && board[i + 2] == computerLetter) {
+				board[i + 1] = computerLetter;
+				System.out.println("Computer own");
+				return true;
+			} else if (board[i] == ' ' && board[i + 1] == computerLetter && board[i + 2] == computerLetter) {
+				board[i] = computerLetter;
+				System.out.println("Computer own");
+				return true;
+			}
+		}
+		for (int i = 1; i < 4; i++) {
+			if (board[i] == computerLetter && board[i + 3] == computerLetter && board[i + 6] == ' ') {
+				board[i + 6] = computerLetter;
+				System.out.println("Computer own");
+				return true;
+			} else if (board[i] == computerLetter && board[i + 3] == ' ' && board[i + 6] == computerLetter) {
+				board[i + 3] = computerLetter;
+				System.out.println("Computer own");
+				return true;
+			} else if (board[i] == ' ' && board[i + 3] == computerLetter && board[i + 6] == computerLetter) {
+				board[i] = computerLetter;
+				System.out.println("Computer own");
+				return true;
+			}
+		}
+		if (board[1] == computerLetter && board[5] == computerLetter && board[9] == ' ') {
+			board[9] = computerLetter;
+			System.out.println("Computer own");
+			return true;
+		} else if (board[1] == computerLetter && board[5] == ' ' && board[9] == computerLetter) {
+			board[5] = computerLetter;
+			System.out.println("Computer own");
+			return true;
+		} else if (board[1] == ' ' && board[5] == computerLetter && board[9] == computerLetter) {
+			board[1] = computerLetter;
+			System.out.println("Computer own");
+			return true;
+		}
+		if (board[3] == computerLetter && board[5] == computerLetter && board[7] == ' ') {
+			board[7] = computerLetter;
+			System.out.println("Computer own");
+			return true;
+		} else if (board[3] == computerLetter && board[5] == ' ' && board[7] == computerLetter) {
+			board[5] = computerLetter;
+			System.out.println("Computer own");
+			return true;
+		} else if (board[3] == ' ' && board[5] == computerLetter && board[7] == computerLetter) {
+			board[3] = computerLetter;
+			System.out.println("Computer own");
+			return true;
+		}
+		return false;
+	}
+
+	static boolean isBlockAble(char[] board) {
+
+		for (int i = 1; i < 10; i += 3) {
+			if (board[i] == playerLetter && board[i + 1] == playerLetter && board[i + 2] == ' ') {
+				board[i + 2] = computerLetter;
+				System.out.println("Computer moved to position " + (i + 2));
+				return true;
+			} else if (board[i] == playerLetter && board[i + 1] == ' ' && board[i + 2] == playerLetter) {
+				board[i + 1] = computerLetter;
+				System.out.println("Computer moved to position " + (i + 1));
+				return true;
+			} else if (board[i] == ' ' && board[i + 1] == playerLetter && board[i + 2] == playerLetter) {
+				board[i] = computerLetter;
+				System.out.println("Computer moved to position " + (i));
+				return true;
+			}
+		}
+		for (int i = 1; i < 4; i++) {
+			if (board[i] == playerLetter && board[i + 3] == playerLetter && board[i + 6] == ' ') {
+				board[i + 6] = computerLetter;
+				System.out.println("Computer moved to position " + (i + 6));
+				return true;
+			} else if (board[i] == playerLetter && board[i + 3] == ' ' && board[i + 6] == playerLetter) {
+				board[i + 3] = computerLetter;
+				System.out.println("Computer moved to position " + (i + 3));
+				return true;
+			} else if (board[i] == ' ' && board[i + 3] == playerLetter && board[i + 6] == playerLetter) {
+				board[i] = computerLetter;
+				System.out.println("Computer moved to position " + (i));
+				return true;
+			}
+		}
+		if (board[1] == playerLetter && board[5] == playerLetter && board[9] == ' ') {
+			board[9] = computerLetter;
+			System.out.println("Computer moved to position 9");
+			return true;
+		} else if (board[1] == playerLetter && board[5] == ' ' && board[9] == playerLetter) {
+			board[5] = computerLetter;
+			System.out.println("Computer moved to position 5");
+			return true;
+		} else if (board[1] == ' ' && board[5] == playerLetter && board[9] == playerLetter) {
+			board[1] = computerLetter;
+			System.out.println("Computer moved to position 1");
+			return true;
+		}
+		if (board[3] == playerLetter && board[5] == playerLetter && board[7] == ' ') {
+			board[7] = computerLetter;
+			System.out.println("Computer moved to position 7");
+			return true;
+		} else if (board[3] == playerLetter && board[5] == ' ' && board[7] == playerLetter) {
+			board[5] = computerLetter;
+			System.out.println("Computer moved to position 5");
+			return true;
+		} else if (board[3] == ' ' && board[5] == playerLetter && board[7] == playerLetter) {
+			board[3] = computerLetter;
+			System.out.println("Computer moved to position 3");
+			return true;
+		}
+		return false;
+	}
+
+	static void computerMove() {
+		position = (int) ((Math.random() * 10) % 9) + 1;
+		while (board[position] != ' ') {
+			position = (int) ((Math.random() * 10) % 9) + 1;
+		}
+		makeMove(position, computerLetter, board);
+		System.out.println("computer moved to position " + position);
+	}
+
 	public static boolean isGameOver(char[] board, char letter) {
 
 		boolean option1 = (board[1] == letter && board[2] == letter && board[3] == letter);
@@ -107,9 +238,11 @@ public class TicTacToe {
 		boolean option7 = (board[1] == letter && board[5] == letter && board[9] == letter);
 		boolean option8 = (board[3] == letter && board[5] == letter && board[7] == letter);
 		if (option1 || option2 || option3 || option4 || option5 || option6 || option7 || option8) {
-
-			System.out.println("Player wins!!!");
-
+			if (letter == playerLetter) {
+				System.out.println("Player wins!!!");
+			} else {
+				System.out.println("Computer Wins!!!");
+			}
 			return true;
 		}
 		if (board[1] != ' ' && board[2] != ' ' && board[3] != ' ' && board[4] != ' ' && board[5] != ' '
@@ -122,12 +255,41 @@ public class TicTacToe {
 
 	public static void main(String[] args) {
 		System.out.println("----- Welcome To The Game Of Tic Tac Toe -----");
+		CurrentPlayer currentPlayer = toss();
 		createBoard(board);
 		getLetter();
-		showBoard(board);
-		playerMove();
-		showBoard(board);
-		toss();
+		
+		
+
+		boolean isBlockAble;
+		boolean isGameOver;
+		boolean isWinAble;
+
+		while (true) {
+			if (currentPlayer == CurrentPlayer.PLAYER) {
+				playerMove();
+				isGameOver = isGameOver(board, playerLetter);
+			} else {
+				isWinAble = isWinAble(board);
+				isBlockAble = isBlockAble(board);
+
+				if (isWinAble) {
+					showBoard(board);
+					break;
+				}
+				if (!isBlockAble) {
+					computerMove();
+				}
+
+				isGameOver = isGameOver(board, computerLetter);
+			}
+			showBoard(board);
+			if (isGameOver) {
+				break;
+			}
+			computerMove();
+			currentPlayer = (currentPlayer == CurrentPlayer.COMPUTER) ? CurrentPlayer.PLAYER : CurrentPlayer.COMPUTER;
+		}
 
 	}
 
