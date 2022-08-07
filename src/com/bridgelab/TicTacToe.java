@@ -253,7 +253,7 @@ public class TicTacToe {
 		return false;
 	}
 	
-	static boolean takeCorner(char[] board,char letter){
+	static boolean takeCornerOrCenter(char[] board,char letter){
         if(board[1]==' '){
             board[1]=letter;
             return true;
@@ -292,16 +292,18 @@ public class TicTacToe {
 				playerMove();
 				isGameOver = isGameOver(board, playerLetter);
 			} else {
-				isWinAble = isWinAble(board);
-				isBlockAble = isBlockAble(board);
-
-				if (isWinAble) {
-					showBoard(board);
-					break;
-				}
-				if (!isBlockAble) {
-					computerMove();
-				}
+                isWinAble=isWinAble(board);
+                if(isWinAble){
+                    showBoard(board);
+                    break;
+                }
+                isBlockAble=isBlockAble(board);
+                if(!isBlockAble){
+                    boolean takeCornerOrCenter = takeCornerOrCenter(board,computerLetter);
+                    if(!takeCornerOrCenter){
+                        computerMove();
+                    }
+                }
 
 				isGameOver = isGameOver(board, computerLetter);
 			}
